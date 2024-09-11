@@ -1,46 +1,55 @@
-import React, { useState, useEffect } from 'react';
-import { ProductComponent } from '../components/ProductComponent';
+import React, { useState } from 'react';
+import { mockProducts } from '../assets/mockProducts';
 import SearchbarComponent from '../components/SearchbarComponent';
 
-export const ProductsContainer = () => {
-  // Store fetched products data
-  const [products, setProducts] = useState([]);
+export default function ProductsContainer() {
+  const [searchValue, setSearchValue] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState(
+    mockProducts.products
+  );
 
-  // Fetch data on component mount
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // Functie pentru schimbarea in input
+  const handleInputChange = (e) => {
+    const value = e.target.value.toLowerCase(); // Preia valoarea inputului
+    setSearchValue(value); // Actualizeaza stateul
 
-  // Fetch products data from API
-  const fetchData = () => {
-    fetch('https://api.escuelajs.co/api/v1/products')
-      .then((response) => response.json())
-      .then((responseJSON) => setProducts(responseJSON));
+    // Filtrarea produselor pe baza textului introdus
+    const filtered = mockProducts.products.filter((product) =>
+      product.title.toLowerCase().includes(value)
+    );
+    setFilteredProducts(filtered); // Actualizeaza lista produselor filtrate
   };
-
-  // Handle input change for search (if needed)
-  // const handleInputChange = (event) => setSearchValue(event.target.value);
 
   return (
     <div className="container">
-      {/* Search bar */}
-      {/* <SearchbarComponent
+      {/* Searchbar */}
+      <SearchbarComponent
         searchValue={searchValue}
         handleInputChange={handleInputChange}
-      /> */}
+      />
 
-      {/* Products - results */}
-      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-3">
-        {products.length > 0
-          ? products.map((product) => (
-              <ProductComponent
-                key={product.id}
-                title={product.title}
-                images={product.images[0]}
-              />
-            ))
-          : 'NO DATA AVAILABLE'}
+      {/* Product List */}
+      <div className="row mt-3">
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <div className="col-md-4 mb-4" key={product.id}>
+              <div className="card">
+                <img
+                  src={product.images[0]}
+                  className="card-img-top"
+                  alt={product.title}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{product.title}</h5>
+                  <p className="card-text">${product.price}</p>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No products found.</p>
+        )}
       </div>
     </div>
   );
-};
+}
