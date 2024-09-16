@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { CategoryComponent } from '../components/CategoryComponent';
 import { mockProducts } from '../assets/mockProducts'; // asigură-te că acest path este corect
 
-export const CategoriesContainer = () => {
-  // Store fetched categories data
+export const CategoriesContainer = ({ onSelectCategory }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -19,14 +17,22 @@ export const CategoriesContainer = () => {
   }, []);
 
   return (
-    <div className="container">
-      {/* Category - results */}
-      <div className="col-4 row-cols-md-2 row-cols-lg-3 mt-3">
-        {categories.length > 0
-          ? categories.map((category, index) => (
-              <CategoryComponent key={index} name={category.name} />
-            ))
-          : 'NO DATA AVAILABLE'}
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-2 d-flex flex-column mt-3">
+          {categories.length > 0
+            ? categories.map((category, index) => (
+                <button
+                  key={index}
+                  className="btn btn-primary mb-2"
+                  onClick={() => onSelectCategory(category.name)}
+                >
+                  {category.name}
+                </button>
+              ))
+            : 'NO DATA AVAILABLE'}
+        </div>
+        <div className="col-10"></div>
       </div>
     </div>
   );

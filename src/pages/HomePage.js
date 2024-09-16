@@ -2,7 +2,6 @@ import React from 'react';
 import ProductsContainer from '../containers/ProductsContainer';
 import TopbarContainer from '../containers/TopbarContainer';
 import SidebarContainer from '../containers/SidebarContainer';
-import SearchbarComponent from '../components/SearchbarComponent';
 
 export default function HomePage() {
   return (

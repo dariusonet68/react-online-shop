@@ -2,8 +2,8 @@ import React from 'react';
 
 export const CategoryComponent = ({ name }) => {
   return (
-    <div className="d-flex bg-dark ">
-      <div className=" p-1">
+    <div className="col bg-dark">
+      <div className="flex-row p-1">
         <li>
           <a className="">{name}</a>
         </li>

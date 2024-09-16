@@ -20,7 +20,7 @@ export default function DetailsPage() {
 
       <div className="container mt-5">
         <div className="row">
-          {/* Carousel de imagini pentru produs */}
+          {/* Carousel pentru imagini produs */}
           <div className="col-md-6">
             <Carousel>
               {product.images.map((image, index) => (
@@ -35,7 +35,7 @@ export default function DetailsPage() {
             </Carousel>
           </div>
 
-          {/* Detalii despre produs */}
+          {/* Detalii produs */}
           <div className="col-md-6">
             <div className="card border-0">
               <div className="card-body">
@@ -43,7 +43,7 @@ export default function DetailsPage() {
                 <p className="card-text">{product.description}</p>
                 <h4 className="text-primary">${product.price}</h4>
 
-                {/* Butoane de acțiune */}
+                {/* Butoane */}
                 <div className="mt-4">
                   <Link to="/" className="btn btn-secondary me-3">
                     Back to Home

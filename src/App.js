@@ -1,13 +1,22 @@
-import React from 'react';
-import HomePage from './pages/HomePage';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import DetailsPage from './pages/DetailsPage';
+import HomePage from './pages/HomePage';
+import NotFound from './pages/NotFound';
+import FavoritesPage from './pages/FavoritesPage';
 
 function App() {
   return (
-    <div>
-      <HomePage />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/details" element={<HomePage />} />
+        <Route path="/details/:id" element={<DetailsPage />} />
+        <Route path="/favorites/:id" element={<FavoritesPage />} />
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

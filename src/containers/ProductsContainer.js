@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { mockProducts } from '../assets/mockProducts';
 import SearchbarComponent from '../components/SearchbarComponent';
+import { Link } from 'react-router-dom';
+import { ProductComponent } from '../components/ProductComponent';
+import SidebarContainer from './SidebarContainer';
 
 export default function ProductsContainer() {
   const [searchValue, setSearchValue] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [filteredProducts, setFilteredProducts] = useState(
     mockProducts.products
   );
@@ -20,35 +24,46 @@ export default function ProductsContainer() {
     setFilteredProducts(filtered); // Actualizeaza lista produselor filtrate
   };
 
-  return (
-    <div className="container">
-      {/* Searchbar */}
-      <SearchbarComponent
-        searchValue={searchValue}
-        handleInputChange={handleInputChange}
-      />
+  //Functie pentru selectarea categoriei
+  const handleSelectCategory = (categoryName) => {
+    setSelectedCategory(categoryName);
 
-      {/* Product List */}
-      <div className="row mt-3">
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map((product) => (
-            <div className="col-md-4 mb-4" key={product.id}>
-              <div className="card">
-                <img
-                  src={product.images[0]}
-                  className="card-img-top"
-                  alt={product.title}
+    //Filtreaza produsele dupa categorie
+    const filtered = mockProducts.products.filter(
+      (product) => product.category.name === categoryName
+    );
+    setFilteredProducts(filtered);
+  };
+
+  return (
+    <div className="d-flex">
+      {/* Sidebar */}
+      <SidebarContainer onSelectCategory={handleSelectCategory} />
+
+      <div className="d-flex container ml-5 flex-wrap">
+        {/* Searchbar */}
+        <SearchbarComponent
+          searchValue={searchValue}
+          handleInputChange={handleInputChange}
+        />
+
+        {/* Product List */}
+        <div className="col col-12 mt-5 px-5 mx-5">
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <Link to={'/details/' + product.id}>
+                <ProductComponent
+                  key={product.id}
+                  images={product.images[0]}
+                  title={product.title}
+                  price={product.price}
                 />
-                <div className="card-body">
-                  <h5 className="card-title">{product.title}</h5>
-                  <p className="card-text">${product.price}</p>
-                </div>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p>No products found.</p>
-        )}
+              </Link>
+            ))
+          ) : (
+            <p>No products found.</p>
+          )}
+        </div>
       </div>
     </div>
   );
