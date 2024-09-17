@@ -42,7 +42,7 @@ export default function DetailsPage() {
   }
 
   return (
-    <div className="bg-dark">
+    <div className="">
       <TopbarContainer />
 
       <div className="container mt-5">
@@ -65,7 +65,7 @@ export default function DetailsPage() {
           {/* Detalii produs */}
           <div className="col-md-6">
             <div className="card border-0">
-              <div className="card-body bg-dark text-light">
+              <div className="card-body ">
                 <h2 className="card-title">{product.title}</h2>
                 <p className="card-text">{product.description}</p>
                 <h4 className="text-primary">${product.price}</h4>
