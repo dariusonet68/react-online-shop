@@ -5,6 +5,7 @@ import DetailsPage from './pages/DetailsPage';
 import HomePage from './pages/HomePage';
 import NotFound from './pages/NotFound';
 import FavoritesPage from './pages/FavoritesPage';
+import CartPage from './pages/CartPage';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/details" element={<HomePage />} />
         <Route path="/details/:id" element={<DetailsPage />} />
-        <Route path="/favorites/:id" element={<FavoritesPage />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/cart" element={<CartPage />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

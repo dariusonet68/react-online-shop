@@ -7,10 +7,7 @@ export default function HomePage() {
   return (
     <div className="container-fluid bg-dark">
       <TopbarContainer />
-      <div className="d-flex">
-        <SidebarContainer />
-      </div>
-      <div className="d-flex">
+      <div className="d-flex justify-content-end">
         <ProductsContainer />
       </div>
     </div>

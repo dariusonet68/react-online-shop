@@ -8,26 +8,18 @@ export const ProductComponent = ({ title, images, price }) => {
     <>
       <div
         className="d-flex col-md-4 mb-4 "
-        style={{ width: '200px', height: '400px' }}
+        style={{ width: '250px', height: '350px' }}
       >
-        <div className="card bg-dark text-light border-white">
+        <div className="card bg-dark text-light border-light-subtle rounded-4">
           <img
             src={images}
-            className="d-flex card-img-top "
+            className="d-flex card-img-top rounded-4"
             alt={title}
             style={{ width: '100%', height: 'auto' }}
           />
           <div className="card-body">
             <p className="card-title h5">{title}</p>
-            <p className="card-text">Price</p>
-            <p className="">${price}</p>
-          </div>
-          <div></div>
-          <div>
-            <button className="d-flex btn btn-sm btn-primary">
-              Add to Cart
-            </button>
-            <button className="d-flex btn btn-sm btn-primary">Favorites</button>
+            <p className="card-text">${price}</p>
           </div>
         </div>
       </div>

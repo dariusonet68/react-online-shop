@@ -19,20 +19,20 @@ export const CategoriesContainer = ({ onSelectCategory }) => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-2 d-flex flex-column mt-3">
+        <div className="col-md-3 col-lg-2 d-flex flex-column mt-3">
           {categories.length > 0
             ? categories.map((category, index) => (
-                <button
+                <div
+                  className="btn text-light mb-2"
                   key={index}
-                  className="btn btn-primary mb-2"
                   onClick={() => onSelectCategory(category.name)}
                 >
                   {category.name}
-                </button>
+                </div>
               ))
             : 'NO DATA AVAILABLE'}
         </div>
-        <div className="col-10"></div>
+        <div className="col-md-9 col-lg-10"></div>
       </div>
     </div>
   );

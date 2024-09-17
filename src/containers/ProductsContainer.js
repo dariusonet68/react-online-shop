@@ -4,6 +4,7 @@ import SearchbarComponent from '../components/SearchbarComponent';
 import { Link } from 'react-router-dom';
 import { ProductComponent } from '../components/ProductComponent';
 import SidebarContainer from './SidebarContainer';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Asigură-te că Bootstrap este importat
 
 export default function ProductsContainer() {
   const [searchValue, setSearchValue] = useState('');
@@ -24,11 +25,11 @@ export default function ProductsContainer() {
     setFilteredProducts(filtered); // Actualizeaza lista produselor filtrate
   };
 
-  //Functie pentru selectarea categoriei
+  // Functie pentru selectarea categoriei
   const handleSelectCategory = (categoryName) => {
     setSelectedCategory(categoryName);
 
-    //Filtreaza produsele dupa categorie
+    // Filtreaza produsele dupa categorie
     const filtered = mockProducts.products.filter(
       (product) => product.category.name === categoryName
     );
@@ -36,33 +37,48 @@ export default function ProductsContainer() {
   };
 
   return (
-    <div className="d-flex">
-      {/* Sidebar */}
-      <SidebarContainer onSelectCategory={handleSelectCategory} />
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-md-3 col-lg-2">
+          {/* Sidebar */}
+          <SidebarContainer onSelectCategory={handleSelectCategory} />
+        </div>
 
-      <div className="d-flex container ml-5 flex-wrap">
-        {/* Searchbar */}
-        <SearchbarComponent
-          searchValue={searchValue}
-          handleInputChange={handleInputChange}
-        />
+        <div className="col-md-9 col-lg-10">
+          {/* Searchbar */}
+          <div className="mb-4">
+            <SearchbarComponent
+              searchValue={searchValue}
+              handleInputChange={handleInputChange}
+            />
+          </div>
 
-        {/* Product List */}
-        <div className="col col-12 mt-5 px-5 mx-5">
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => (
-              <Link to={'/details/' + product.id}>
-                <ProductComponent
+          {/* Product List */}
+          <div className="row">
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((product) => (
+                <div
+                  className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"
                   key={product.id}
-                  images={product.images[0]}
-                  title={product.title}
-                  price={product.price}
-                />
-              </Link>
-            ))
-          ) : (
-            <p>No products found.</p>
-          )}
+                >
+                  <Link
+                    to={'/details/' + product.id}
+                    className="text-decoration-none"
+                  >
+                    <ProductComponent
+                      images={product.images[0]}
+                      title={product.title}
+                      price={product.price}
+                    />
+                  </Link>
+                </div>
+              ))
+            ) : (
+              <div className="col-12">
+                <p>No products found.</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
