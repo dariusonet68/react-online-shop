@@ -29,11 +29,16 @@ export default function ProductsContainer() {
   const handleSelectCategory = (categoryName) => {
     setSelectedCategory(categoryName);
 
-    // Filtreaza produsele dupa categorie
-    const filtered = mockProducts.products.filter(
-      (product) => product.category.name === categoryName
-    );
-    setFilteredProducts(filtered);
+    if (categoryName === 'All Products') {
+      // Afișează toate produsele dacă este selectată categoria "All Products"
+      setFilteredProducts(mockProducts.products);
+    } else {
+      // Filtrează produsele după categorie
+      const filtered = mockProducts.products.filter(
+        (product) => product.category.name === categoryName
+      );
+      setFilteredProducts(filtered);
+    }
   };
 
   return (
