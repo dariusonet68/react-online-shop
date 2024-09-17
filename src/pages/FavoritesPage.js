@@ -5,7 +5,7 @@ import TopbarContainer from '../containers/TopbarContainer';
 function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
 
-  // Recuperăm produsele favorite din localStorage când componenta se montează
+  // Recuperam produsele favorite din localStorage cand componenta se monteaza
   useEffect(() => {
     const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setFavorites(savedFavorites);
@@ -51,7 +51,7 @@ function FavoritesPage() {
                       View Details
                     </Link>
 
-                    {/* Buton pentru ștergere din favorite */}
+                    {/* Buton pentru stergere din favorite */}
                     <button
                       className="btn btn-danger"
                       onClick={() => removeFromFavorites(product.id)}

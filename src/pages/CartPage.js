@@ -5,13 +5,12 @@ function CartPage() {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  // Preluăm produsele din localStorage sau inițializăm coșul cu un array gol
   useEffect(() => {
     const savedCartItems = JSON.parse(localStorage.getItem('cart')) || [];
     setCartItems(savedCartItems);
   }, []);
 
-  // Funcție pentru a actualiza prețul total
+  // Functie pentru pret total
   useEffect(() => {
     const total = cartItems.reduce(
       (sum, item) => sum + item.price * item.quantity,
@@ -20,31 +19,31 @@ function CartPage() {
     setTotalPrice(total);
   }, [cartItems]);
 
-  // Funcție pentru a actualiza cantitatea unui produs din coș
+  // Functie actualizare cantitate produs din coș
   const updateQuantity = (productId, quantity) => {
     const updatedCartItems = cartItems.map((item) => {
       if (item.id === productId) {
-        return { ...item, quantity: Math.max(1, quantity) }; // cantitatea minimă este 1
+        return { ...item, quantity: Math.max(1, quantity) };
       }
       return item;
     });
 
     setCartItems(updatedCartItems);
-    localStorage.setItem('cart', JSON.stringify(updatedCartItems)); // actualizăm și localStorage
+    localStorage.setItem('cart', JSON.stringify(updatedCartItems));
   };
 
-  // Funcție pentru a elimina un produs din coș
+  // Functie pentru a elimina produs din cos
   const removeFromCart = (productId) => {
     const updatedCartItems = cartItems.filter((item) => item.id !== productId);
     setCartItems(updatedCartItems);
     localStorage.setItem('cart', JSON.stringify(updatedCartItems));
   };
 
-  // Funcție pentru plasarea comenzii
+  // Functie pentru plasarea comanda
   const handleCheckout = () => {
     alert('Order placed successfully!');
-    setCartItems([]); // Golim coșul
-    localStorage.removeItem('cart'); // Ștergem coșul din localStorage
+    setCartItems([]);
+    localStorage.removeItem('cart');
   };
 
   return (

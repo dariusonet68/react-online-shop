@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { mockProducts } from '../assets/mockProducts'; // Asigură-te că acest path este corect
+import { mockProducts } from '../assets/mockProducts';
 
 export const CategoriesContainer = ({ onSelectCategory }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    // Ia categoria din products și adaugă categoria "All Products"
     const uniqueCategories = [
-      { name: 'All Products' }, // Adaugă categoria "All Products"
+      { name: 'All Products' },
       ...mockProducts.products
         .map((product) => product.category)
         .filter(

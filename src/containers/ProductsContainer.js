@@ -4,7 +4,7 @@ import SearchbarComponent from '../components/SearchbarComponent';
 import { Link } from 'react-router-dom';
 import { ProductComponent } from '../components/ProductComponent';
 import SidebarContainer from './SidebarContainer';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Asigură-te că Bootstrap este importat
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function ProductsContainer() {
   const [searchValue, setSearchValue] = useState('');
@@ -30,10 +30,10 @@ export default function ProductsContainer() {
     setSelectedCategory(categoryName);
 
     if (categoryName === 'All Products') {
-      // Afișează toate produsele dacă este selectată categoria "All Products"
+      // Afiseaza toate produsele din categoria "All Products"
       setFilteredProducts(mockProducts.products);
     } else {
-      // Filtrează produsele după categorie
+      // Filtreaza produsele dupa categorie
       const filtered = mockProducts.products.filter(
         (product) => product.category.name === categoryName
       );
