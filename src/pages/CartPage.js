@@ -19,7 +19,7 @@ function CartPage() {
     setTotalPrice(total);
   }, [cartItems]);
 
-  // Functie actualizare cantitate produs din coș
+  // Functie actualizare cantitate produs din cos
   const updateQuantity = (productId, quantity) => {
     const updatedCartItems = cartItems.map((item) => {
       if (item.id === productId) {
